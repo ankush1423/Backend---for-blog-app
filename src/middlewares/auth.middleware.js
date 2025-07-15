@@ -15,7 +15,7 @@ const verifyJWT = asyncHandler(async (req,_,next) => {
 
         const decodedToken = await jwt.verify(token,process.env.ACCESS_TOKEN_SECRET)
 
-        if(decodedToken && decodedToken === token)
+        if(!decodedToken)
         {
             throw new ApiError(404,'this token is used')
         }

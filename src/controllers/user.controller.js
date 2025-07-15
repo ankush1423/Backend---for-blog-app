@@ -122,13 +122,11 @@ export const refreshAccessToken = asyncHandler(async(req,res) => {
     {
        throw new ApiError(401,"error while getting the incoming token...")
     }
-
     const decodedToken = await jwt.verify(incomingToken,process.env.REFRESH_TOKEN_SECRET)
-    if(decodedToken && decodedToken !== incomingToken)
+    if(!decodedToken)
     {
        throw new ApiError(201,"unauthorised token...")
     }
-
     const accessToken = await req?.user?.genrateAccessToken()
     if(!accessToken)
     {
@@ -142,14 +140,48 @@ export const refreshAccessToken = asyncHandler(async(req,res) => {
 
     return res
            .status(201)
+           .cookie("accessToken",accessToken,options)
+           .cookie("refreshToken",incomingToken,options)
            .json(
               new ApiResponse(
                  201,
-                 
+                 {},
+                 "access Token refresh SuccessFully..."
               )
            )
 })
 
+export const logOutUser = asyncHandler(async(req,res) => {
+     await User.findByIdAndUpdate(
+        req?.user?._id,
+        {
+           $unset : {
+              refreshToken : 1
+           }
+        },
+        {
+          new : true
+        }
+     )
+      
+     const options = {
+         httpOnly : true,
+         secure : true
+     }
+
+     return res
+            .status(201)
+            .clearCookie("accessToken",options)
+            .clearCookie("refreshToken",options)
+            .json(
+                new ApiResponse(
+                    201,
+                    {},
+                    "user loggedOut SuccessFully"
+                )
+            )
+          
+})
 
 
 
