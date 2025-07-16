@@ -30,7 +30,7 @@ const genrateAccessRefreshToken = async(userId) => {
       throw new ApiError(404,"error while genrating the access token and refresh token")
    }
 }
-
+   
 export const registerUser = asyncHandler(async(req,res)=>{
     const {name,email,password} = req.body
     if(!name || !email || !password)
