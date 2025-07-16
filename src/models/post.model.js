@@ -19,7 +19,7 @@ const PostSchema = new mongoose.Schema({
     enum: ['active', 'inactive'],
     default: 'active'
   },
-  featuredImage: {
+  feturedImage: {
     type: String,
   },
   userId: {

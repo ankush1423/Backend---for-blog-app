@@ -32,6 +32,7 @@ const genrateAccessRefreshToken = async(userId) => {
 }
    
 export const registerUser = asyncHandler(async(req,res)=>{
+ 
     const {name,email,password} = req.body
     if(!name || !email || !password)
     {
@@ -61,6 +62,7 @@ export const registerUser = asyncHandler(async(req,res)=>{
 })
 
 export const loginUser = asyncHandler(async(req,res) => {
+
      const {email,password} = req.body
      if(!email || !password)
      {

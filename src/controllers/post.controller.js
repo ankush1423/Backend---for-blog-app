@@ -17,19 +17,19 @@ export const createPost = asyncHandler(async(req,res) => {
      {
         throw new ApiError(404,"please provide a valid ID for user...")
      }
-     
-     const featuredImageLocalPath = req.file.feturedImage[0]
+
+     const featuredImageLocalPath = req.file?.path
      if(!featuredImageLocalPath)
      {
         throw new ApiError(404,"Error while uploading the feature image...")
      }
 
      const feturedImage = await uploadOnCloudinary(featuredImageLocalPath)
-     if(!feturedImage)
+     if(!feturedImage.url)
      {
         throw new ApiError(404,"error while uploading a file to the cloudinary...")
      }
-
+     console.log(feturedImage.url)
      const createdPost = await Post.create({
         title,
         slug,
@@ -143,7 +143,6 @@ export const getPost = asyncHandler(async(req,res) => {
      {
         throw new ApiError(404,"error while getting the post...")
      }
-
      return res
             .status(201)
             .json(
@@ -188,7 +187,6 @@ export const getFilePreview = asyncHandler(async(req,res) => {
      {
         throw new ApiError(404,"error while getting the post...")
      }
-
      return res
             .status(201)
             .json(

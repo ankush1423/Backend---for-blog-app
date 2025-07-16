@@ -20,7 +20,7 @@ const verifyJWT = asyncHandler(async (req,_,next) => {
             throw new ApiError(404,'this token is used')
         }
 
-        const user = await User.findById(decodedToken._id)
+        const user = await User.findById(decodedToken._id).select("-password -refreshToken")
         if(!user)
         {
             throw new ApiError(404,'Error while getting the user...')

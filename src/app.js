@@ -23,8 +23,6 @@ import postRoutes from "./routes/post.route.js"
 app.use("/api/v1/user",userRoutes)
 app.use("/api/v1/posts",postRoutes)
 
-
-
 export default app
 
 
