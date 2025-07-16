@@ -36,7 +36,7 @@ const verifyJWT = asyncHandler(async (req,_,next) => {
 })
 
 
-
+export {verifyJWT}
 
 
 
