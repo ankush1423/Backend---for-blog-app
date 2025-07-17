@@ -67,7 +67,7 @@ export const updatePost = asyncHandler(async(req,res) => {
         throw new ApiError("404","please provide the all feilds...")
      }
      
-     const featuredImageLocalPath = req?.file?.feturedImage[0]
+     const featuredImageLocalPath = req?.file?.path
      if(!featuredImageLocalPath)
      {
         throw new ApiError(404,"please provide the fetured image...")
