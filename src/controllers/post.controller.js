@@ -199,17 +199,18 @@ export const getFilePreview = asyncHandler(async(req,res) => {
 }) 
 
 
-
-
-
-
-
-
-
 // createPost
 // updatePost
 // deletePost
 // getPost
 // getPosts
-// deleteFile // from cloudinary
-// getFilePreview // the uploaded image
+// deleteFile      // from cloudinary
+// getFilePreview  // the uploaded image
+
+
+
+
+
+
+
+
