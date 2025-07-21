@@ -53,6 +53,7 @@ export const createPost = asyncHandler(async(req,res) => {
                      "post created successfully..."
                 )
             )
+                        
 })
 
 export const updatePost = asyncHandler(async(req,res) => {
